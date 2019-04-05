@@ -1,4 +1,4 @@
-# OpenWhiskRP3
+# OpenWhisk
 Repositorio para proyecto Serverless de fin de grado para IES Gonzalo Nazareno por Luis Manuel Raya Bernal 
 
 Documentacion:
