@@ -7,62 +7,36 @@ Documentacion:
 
 
 ```
-Instalación de Docker:
+Instalación con Vagrant
+Luis Manuel Raya Bernal - IES Gonzalo Nazareno
 
-sudo apt-get update
-
-
-sudo apt-get install \
-
-   apt-transport-https \
-
-   ca-certificates \
-
-   curl \
-
-   gnupg2 \
-
-   software-properties-common
+Necesitamos VirtualBox y Vagrant v2.2.4 instalados.
+Vagrant:
 
 
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+wget -c https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
+
+sudo dpkg -i vagrant_2.2.4_x86_64.deb
 
 
-sudo apt-key fingerprint 0EBFCD88
+
+OpenWhisk:
 
 
-sudo add-apt-repository \
-
-  "deb [arch=amd64] https://download.docker.com/linux/debian \
-
-  $(lsb_release -cs) \
-
-  stable"
+git clone --depth=1 -b lean https://github.com/kpavel/incubator-openwhisk.git openwhisk
 
 
-sudo apt-get update
+cd openwhisk/tools/vagrant
+
+export LEAN=true
 
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+./hello
 
 
-Instalacion DockerCompose:
+Para averiguar  el usuario y contraseña de OpenWhisk:
 
+Vagrant ssh
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-
-sudo chmod +x /usr/local/bin/docker-compose
-
-
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-
-
-Instalación OpenWhisk:
-
-git clone -b lean https://github.com/kpavel/incubator-openwhisk-devtools.git
-
-cd docker-compose-lean/docker-compose
-
-make quick-start
+wsk property get --auth | cut -c13-
 ```
